@@ -45,7 +45,11 @@ public final class Navigator {
 			)
 
 		case let .setTab(index):
-			(self.rootProvider.rootViewController as? UITabBarController)?.selectedIndex = index
+			guard let tabController = self.rootProvider.rootViewController as? UITabBarController else {
+				print("⚠️ Can't set tab")
+				return
+			}
+			tabController.selectedIndex = index
 			completion?()
 
 		case let .push(presentable):
@@ -53,19 +57,31 @@ public final class Navigator {
 				print("⚠️ Can't build \(type(of: presentable))")
 				return
 			}
-			self.rootProvider.topMostViewController?.navigationController?.pushViewController(
+			guard let navigationController = self.rootProvider.topMostViewController?.navigationController else {
+				print("⚠️ Can't find navigation controller")
+				return
+			}
+			navigationController.pushViewController(
 				viewController,
 				animated: animated,
 				completion: completion
 			)
 		case .pop:
-			self.rootProvider.topMostViewController?.navigationController?.popViewController(
+			guard let navigationController = self.rootProvider.topMostViewController?.navigationController else {
+				print("⚠️ Can't find navigation controller")
+				return
+			}
+			navigationController.popViewController(
 				animated: animated,
 				completion: completion
 			)
 
 		case .popToRoot:
-			self.rootProvider.topMostViewController?.navigationController?.popToRootViewController(
+			guard let navigationController = self.rootProvider.topMostViewController?.navigationController else {
+				print("⚠️ Can't find navigation controller")
+				return
+			}
+			navigationController.popToRootViewController(
 				animated: animated,
 				completion: completion
 			)
@@ -75,14 +91,22 @@ public final class Navigator {
 				print("⚠️ Can't build \(type(of: presentable))")
 				return
 			}
-			self.rootProvider.topPresentedViewController?.present(
+			guard let topPresented = self.rootProvider.topPresentedViewController else {
+				print("⚠️ Can't find top presented controller")
+				return
+			}
+			topPresented.present(
 				viewController,
 				animated: animated,
 				completion: completion
 			)
 
 		case .dismiss:
-			self.rootProvider.topPresentedViewController?.dismiss(
+			guard let topPresented = self.rootProvider.topPresentedViewController else {
+				print("⚠️ Can't find top presented controller")
+				return
+			}
+			topPresented.dismiss(
 				animated: animated,
 				completion: completion
 			)
