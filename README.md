@@ -6,7 +6,7 @@ NavigatorSwift is a lightweight library which allows you not to be crazy with na
 
 ## How to use
 
-Define an object which conform `NavigationRootProvider` protocol or use standart `WindowNavigationRootProvider()`. Instantiate `Navigator(rootProvider:)`. If you want to go forward use `Presentable` protocol, by default `UIViewController` conform the protocol.
+Define an object which conform `NavigationProvider` protocol or use standart `WindowNavigationProvider()`. Instantiate `Navigator(rootProvider:)`. If you want to go forward use `Presentable` protocol, by default `UIViewController` conform the protocol.
 
 ```swift
 

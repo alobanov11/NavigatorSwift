@@ -5,9 +5,9 @@
 import UIKit
 
 public final class Navigator {
-	private var rootProvider: NavigationRootProvider
+	private var rootProvider: NavigationProvider
 
-	public init(rootProvider: NavigationRootProvider) {
+	public init(rootProvider: NavigationProvider) {
 		self.rootProvider = rootProvider
 	}
 

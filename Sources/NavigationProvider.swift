@@ -4,7 +4,7 @@
 
 import UIKit
 
-public protocol NavigationRootProvider {
+public protocol NavigationProvider {
 	var topMostViewController: UIViewController? { get }
 	var topPresentedViewController: UIViewController? { get }
 	var rootViewController: UIViewController? { get }
@@ -15,7 +15,7 @@ public protocol NavigationRootProvider {
 	)
 }
 
-public final class WindowNavigationRootProvider: NavigationRootProvider {
+public final class WindowNavigationProvider: NavigationProvider {
 	public var topMostViewController: UIViewController? {
 		self.window?.rootViewController?.topMostViewController
 	}
