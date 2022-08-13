@@ -5,14 +5,14 @@
 import UIKit
 
 public final class Navigator {
-	private let rootProvider: NavigatorRootProvider
+	private var rootProvider: NavigationRootProvider
 
-	public init(rootProvider: NavigatorRootProvider) {
+	public init(rootProvider: NavigationRootProvider) {
 		self.rootProvider = rootProvider
 	}
 
 	public func navigate(
-		with routes: [Route],
+		with routes: [NavigationRoute],
 		animated: Bool = true,
 		completion: (() -> Void)? = nil
 	) {
@@ -29,7 +29,7 @@ public final class Navigator {
 	}
 
 	public func navigate(
-		to route: Route,
+		to route: NavigationRoute,
 		animated: Bool = true,
 		completion: (() -> Void)? = nil
 	) {

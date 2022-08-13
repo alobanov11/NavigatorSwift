@@ -4,7 +4,7 @@
 
 import UIKit
 
-public extension UIViewController {
+extension UIViewController {
 	var topMostViewController: UIViewController {
 		self.findTopMostViewController(self)
 	}
@@ -28,7 +28,7 @@ public extension UIViewController {
 	}
 }
 
-public extension UIViewController {
+extension UIViewController {
 	var topPresentedViewController: UIViewController {
 		self.findTopPresentedViewController(self)
 	}

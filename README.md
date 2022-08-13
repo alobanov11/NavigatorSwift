@@ -6,11 +6,13 @@ NavigatorSwift is a lightweight library which allows you not to be crazy with na
 
 ## How to use
 
-Define an object which conform `NavigationRootProvider` protocol or use standart `BaseNavigatorRootProvider(container:)`. The container must conform `NavigatorRootContainer` protocol and by default UIWindow already conform it. Instantiate `Navigator(rootProvider:)`. If you want to go forward use `Presentable` protocol, by default `UIViewController` conform the protocol.
+Define an object which conform `NavigationRootProvider` protocol or use standart `WindowNavigationRootProvider()`. Instantiate `Navigator(rootProvider:)`. If you want to go forward use `Presentable` protocol, by default `UIViewController` conform the protocol.
 
 ```swift
 
-let rootProvider = BaseNavigatorRootProvider(container: window)
+let rootProvider = WindowNavigatorRootProvider()
+rootProvider.setWindow(window) // async set window
+
 let navigator = Navigator(rootProvider: rootProvider)
 
 navigator.navigate(to: .present(SomeViewController()), animated: true, completion: { print("Done") })
