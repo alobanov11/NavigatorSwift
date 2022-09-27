@@ -4,7 +4,7 @@
 
 import UIKit
 
-public enum NavigationRoute {
+public enum Route {
 	case setRoot(Presentable)
 	case setTab(Int)
 	case push(Presentable)

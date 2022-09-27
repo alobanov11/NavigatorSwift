@@ -4,7 +4,7 @@
 
 import UIKit
 
-extension UIViewController {
+public extension UIViewController {
 	var topMostViewController: UIViewController {
 		self.findTopMostViewController(self)
 	}
@@ -24,11 +24,15 @@ extension UIViewController {
 			return self.findTopMostViewController(lastViewController)
 		}
 
+		if let childController = controller.children.first as? UINavigationController  {
+			return self.findTopMostViewController(childController)
+		}
+
 		return controller
 	}
 }
 
-extension UIViewController {
+public extension UIViewController {
 	var topPresentedViewController: UIViewController {
 		self.findTopPresentedViewController(self)
 	}
