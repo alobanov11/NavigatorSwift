@@ -4,7 +4,7 @@
 
 import UIKit
 
-public protocol NavigatorRootProvider {
+public protocol NavigationRootProvider {
 	var topMostViewController: UIViewController? { get }
 	var topPresentedViewController: UIViewController? { get }
 	var rootViewController: UIViewController? { get }
@@ -15,32 +15,34 @@ public protocol NavigatorRootProvider {
 	)
 }
 
-public protocol NavigatorRootContainer: AnyObject {
+public protocol NavigationRootContainer: AnyObject {
 	var rootViewController: UIViewController? { get set }
 }
 
-extension UIWindow: NavigatorRootContainer {}
+extension UIWindow: NavigationRootContainer {}
 
-public final class BaseNavigatorRootProvider: NavigatorRootProvider {
+public final class WindowNavigationProvider: NavigationRootProvider {
 	public var topMostViewController: UIViewController? {
-		self.container.rootViewController?.topMostViewController
+		self.window?.rootViewController?.topMostViewController
 	}
 
 	public var topPresentedViewController: UIViewController? {
-		self.container.rootViewController?.topPresentedViewController
+		self.window?.rootViewController?.topPresentedViewController
 	}
 
 	public var rootViewController: UIViewController? {
-		self.container.rootViewController
+		self.window?.rootViewController
 	}
 
-	private let container: NavigatorRootContainer
+	private var window: UIWindow?
 
-	public init(container: NavigatorRootContainer) {
-		self.container = container
+	public init() {}
+
+	public func setWindow(_ window: UIWindow) {
+		self.window = window
 	}
 
 	public func `switch`(to: UIViewController, completion: (() -> Void)?) {
-		self.container.rootViewController = to
+		self.window?.rootViewController = to
 	}
 }

@@ -10,7 +10,7 @@ Define an object which conform `NavigationProvider` protocol or use standart `Wi
 
 ```swift
 
-let rootProvider = WindowNavigatorRootProvider()
+let rootProvider = WindowNavigationRootProvider()
 rootProvider.setWindow(window) // async set window
 
 let navigator = Navigator(rootProvider: rootProvider)
