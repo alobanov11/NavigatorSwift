@@ -66,12 +66,28 @@ public final class Navigator {
 				animated: animated,
 				completion: completion
 			)
+
 		case .pop:
 			guard let navigationController = self.rootProvider.topMostViewController?.navigationController else {
 				print("⚠️ Can't find navigation controller")
 				return
 			}
 			navigationController.popViewController(
+				animated: animated,
+				completion: completion
+			)
+
+		case let .popTo(number):
+			guard let navigationController = self.rootProvider.topMostViewController?.navigationController else {
+				print("⚠️ Can't find navigation controller")
+				return
+			}
+			guard navigationController.viewControllers.count > number else {
+				print("⚠️ Can't pop to \(number)")
+				return
+			}
+			navigationController.popToViewController(
+				navigationController.viewControllers[navigationController.viewControllers.count - 1 - abs(number)],
 				animated: animated,
 				completion: completion
 			)

@@ -9,6 +9,7 @@ public enum Route {
 	case setTab(Int)
 	case push(Presentable)
 	case pop
+	case popTo(Int)
 	case popToRoot
 	case present(Presentable)
 	case dismiss
