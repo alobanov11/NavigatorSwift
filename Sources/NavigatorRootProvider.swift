@@ -15,12 +15,6 @@ public protocol NavigationRootProvider {
 	)
 }
 
-public protocol NavigationRootContainer: AnyObject {
-	var rootViewController: UIViewController? { get set }
-}
-
-extension UIWindow: NavigationRootContainer {}
-
 public final class WindowNavigationProvider: NavigationRootProvider {
 	public var topMostViewController: UIViewController? {
 		self.window?.rootViewController?.topMostViewController
@@ -44,5 +38,6 @@ public final class WindowNavigationProvider: NavigationRootProvider {
 
 	public func `switch`(to: UIViewController, completion: (() -> Void)?) {
 		self.window?.rootViewController = to
+		completion?()
 	}
 }
